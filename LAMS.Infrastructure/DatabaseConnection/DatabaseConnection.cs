@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using LAMS.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,16 +13,36 @@ namespace LAMS.Infrastructure.DatabaseConnection
     {
         public DatabaseConnection(DbContextOptions<DatabaseConnection> options) : base(options)
         {
-
-            //Database Entity
-
-            //Model View Entity
+            
         }
+
+        //Database Entity
+        public DbSet<Customer> Customer { get; set; }
+        public DbSet<Account> Account { get; set; }
+        public DbSet<Loan> Loan { get; set; }
+        public DbSet<LoanInstallment> LoanInstallment { get; set; }
+        public DbSet<Payments> Payment { get; set; }
+        public DbSet<Transaction> Transaction { get; set; }
+        
+
+        //Model View Entity
+
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
             //Database Entity
-            //modelBuilder.Entity<DataMapping>().HasKey(x => x.Id);
+            modelBuilder.Entity<Customer>().HasKey(x => x.CustomerId);
+            modelBuilder.Entity<Account>().HasKey(x => x.AccountId);
+            modelBuilder.Entity<Loan>().HasKey(x => x.LoanId);
+            modelBuilder.Entity<LoanInstallment>().HasKey(x => x.InstallmentId);
+            modelBuilder.Entity<Payments>().HasKey(x => x.PaymentId);
+            modelBuilder.Entity<Transaction>().HasKey(x => x.TransactionId);
+
+
+
+
             //Model View Entity
             //modelBuilder.Entity<VisitLogGallarayDto>().HasNoKey();
 
