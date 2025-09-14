@@ -17,12 +17,12 @@ namespace LAMS.Infrastructure.DatabaseConnection
         }
 
         //Database Entity
-        public DbSet<Customer> Customer { get; set; }
-        public DbSet<Account> Account { get; set; }
+        public DbSet<Customers> Customer { get; set; }
+        public DbSet<Accounts> Account { get; set; }
         public DbSet<Loan> Loan { get; set; }
         public DbSet<LoanInstallment> LoanInstallment { get; set; }
         public DbSet<Payments> Payment { get; set; }
-        public DbSet<Transaction> Transaction { get; set; }
+        public DbSet<Transactions> Transaction { get; set; }
         
 
         //Model View Entity
@@ -33,12 +33,12 @@ namespace LAMS.Infrastructure.DatabaseConnection
         {
 
             //Database Entity
-            modelBuilder.Entity<Customer>().HasKey(x => x.CustomerId);
-            modelBuilder.Entity<Account>().HasKey(x => x.AccountId);
+            modelBuilder.Entity<Customers>().HasKey(x => x.CustomerId);
+            modelBuilder.Entity<Accounts>().HasKey(x => x.AccountId);
             modelBuilder.Entity<Loan>().HasKey(x => x.LoanId);
             modelBuilder.Entity<LoanInstallment>().HasKey(x => x.InstallmentId);
             modelBuilder.Entity<Payments>().HasKey(x => x.PaymentId);
-            modelBuilder.Entity<Transaction>().HasKey(x => x.TransactionId);
+            modelBuilder.Entity<Transactions>().HasKey(x => x.TransactionId);
 
 
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LAMS.Domain.Entities
 {
-    public class Transaction
+    public class Transactions
     {
         [Key]
         public int TransactionId { get; set; }
