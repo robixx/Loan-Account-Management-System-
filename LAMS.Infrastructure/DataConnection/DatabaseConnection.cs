@@ -1,4 +1,5 @@
-﻿using LAMS.Domain.Entities;
+﻿using LAMS.Application.ModelViewDto;
+using LAMS.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LAMS.Infrastructure.DatabaseConnection
+namespace LAMS.Infrastructure.DataConnection
 {
     public class DatabaseConnection : DbContext
     {
@@ -23,10 +24,11 @@ namespace LAMS.Infrastructure.DatabaseConnection
         public DbSet<LoanInstallment> LoanInstallment { get; set; }
         public DbSet<Payments> Payment { get; set; }
         public DbSet<Transactions> Transaction { get; set; }
+        public DbSet<Menu> Menu { get; set; }
         
 
         //Model View Entity
-
+        public DbSet<MenuDto> MenuDto {  get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -44,7 +46,7 @@ namespace LAMS.Infrastructure.DatabaseConnection
 
 
             //Model View Entity
-            //modelBuilder.Entity<VisitLogGallarayDto>().HasNoKey();
+            modelBuilder.Entity<MenuDto>().HasNoKey();
 
             base.OnModelCreating(modelBuilder);
         }

@@ -1,4 +1,5 @@
-using LAMS.Infrastructure.DatabaseConnection;
+
+using LAMS.Infrastructure.DataConnection;
 using LAMS.WEB.Utility;
 using Microsoft.EntityFrameworkCore;
 
