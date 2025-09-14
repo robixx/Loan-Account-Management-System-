@@ -3,17 +3,33 @@
     Layout = "~/Views/Shared/_ContentNavbarLayout.cshtml";
 }
 
-@section VendorStyles {
-    <link rel="stylesheet" href="~/vendor/libs/apex-charts/apex-charts.css" />
-}
+
 @section VendorScripts {
-    <script src="~/vendor/libs/apex-charts/apexcharts.js"></script>
+    <script src="~/vendor/libs/masonry/masonry.js"></script>
 }
-@section PageScripts {
-    <script src="~/js/dashboards-analytics.js"></script>
-}
+<style>
+    .card-header{
+        padding: 0.5rem 1rem !important;        
+        border-bottom: 1px solid #e1e1e1;
+    }
+
+</style>
 
 
-<div class="row">
-    <h3>Customer Create</h3>
+<div class="card">
+    <div class="card-header mb-3">
+        <h5 class="mb-0">Customer Create</h5>
+    </div>    
+    <div class="card-body">
+        <div class="row g-3">
+            <div class="col-12 col-md-3">
+                <div class="mb-3">
+                    <label for="name-label">First Name</label>
+                    <input class="form-control" name="firstName" id="firstName" required />
+                </div>                
+            </div>
+        </div>
+    </div>
 </div>
+
+
