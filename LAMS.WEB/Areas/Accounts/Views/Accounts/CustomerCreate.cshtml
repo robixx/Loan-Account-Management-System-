@@ -1,12 +1,12 @@
 ﻿@{
     ViewData["Title"] = "Customer - Create";
-    Layout = "~/Views/Shared/_ContentNavbarLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-@section VendorScripts {
-    <script src="~/vendor/libs/masonry/masonry.js"></script>
+@section Scripts {
+  
 }
+
 <style>
     .card-header{
         padding: 0.5rem 1rem !important;        
@@ -22,14 +22,37 @@
     </div>    
     <div class="card-body">
         <div class="row g-3">
-            <div class="col-12 col-md-3">
-                <div class="mb-3">
-                    <label for="name-label">First Name</label>
-                    <input class="form-control" name="firstName" id="firstName" required />
-                </div>                
-            </div>
+            <div class="table-responsive text-nowrap">
+               <table class="table table-striped" id="datatable">
+                   <thead>
+                       <tr>
+                           <th>SL.</th>
+                           <th>Name</th>
+                           <th>Email</th>
+                           <th>NID</th>
+                           <th>Number</th>
+                           <th>Active Date</th>
+                           <th>Status</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       <tr>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                       </tr>
+                   </tbody>
+
+               </table>
+           </div>
         </div>
     </div>
 </div>
 
+
+<script src="~/assets/js/script.js"></script>
 
