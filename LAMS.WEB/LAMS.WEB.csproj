@@ -7,17 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Accounts\Data\**" />
+    <Compile Remove="Areas\Accounts\Models\**" />
+    <Content Remove="Areas\Accounts\Data\**" />
+    <Content Remove="Areas\Accounts\Models\**" />
+    <EmbeddedResource Remove="Areas\Accounts\Data\**" />
+    <EmbeddedResource Remove="Areas\Accounts\Models\**" />
+    <None Remove="Areas\Accounts\Data\**" />
+    <None Remove="Areas\Accounts\Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\LAMS.Application\LAMS.Application.csproj" />
     <ProjectReference Include="..\LAMS.Infrastructure\LAMS.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Areas\Accounts\Data\" />
-    <Folder Include="Areas\Accounts\Models\" />
   </ItemGroup>
 
 </Project>

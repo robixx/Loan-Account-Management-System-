@@ -1,0 +1,351 @@
+﻿@{
+    ViewData["Title"] = "Customer - Profile";
+    Layout = "~/Views/Shared/_ContentNavbarLayout.cshtml";
+}
+
+
+@section VendorScripts {
+    <script src="~/vendor/libs/masonry/masonry.js"></script>
+}
+<style>
+    :root {
+        --primary-color: #5d63f2;
+        --primary-hover-color: #4b52df;
+        --text-muted-color: #6c757d;
+        --text-secondary-color: green;
+    }
+    .profile-header-bg {
+        background-image: url('https://placehold.co/1200x300/D1D5DB/fff?text=Header+Image');
+        background-size: cover;
+        background-position: center;
+        height: 200px;
+    }
+
+    .profile-container {
+        margin-top: -100px;
+    }
+
+    .card {
+        border-radius: 1rem;
+        border: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .profile-img {
+        width: 120px;
+        height: 120px;
+        border: 4px solid #fff;
+        object-fit: cover;
+    }
+
+    .btn-primary-custom {
+        background-color: var(--primary-color);
+        border: none;
+        border-radius: 50px;
+        font-weight: 500;
+    }
+
+        .btn-primary-custom:hover {
+            background-color: var(--primary-hover-color);
+        }
+
+    .expert-tag,
+    .skill-tag {
+        background-color: #e5e7eb;
+        color: var(--text-secondary-color);
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+    .tab-link {
+        font-weight: 500;
+        color: var(--text-muted-color);
+        border-bottom: 2px solid transparent;
+        transition: all 0.2s ease-in-out;
+        padding-bottom: 0.5rem;
+        cursor: pointer;
+    }
+
+        .tab-link.active {
+            color: #000;
+            border-bottom: 2px solid #000;
+            font-weight: 600;
+        }
+
+    .tab-pane {
+        display: none;
+    }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+    .content-section {
+        background-color: #f8f9fa;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+    }
+
+    .footer-logo {
+        font-weight: 700;
+    }
+
+</style>
+
+
+<!-- Profile Header Section -->
+<div class="profile-header-bg">
+    <div class="d-flex justify-content-end p-3">
+        <button class="btn btn-light rounded-pill d-flex align-items-center">
+            <i class="fas fa-share-alt me-2"></i>
+            Share Profile
+        </button>
+    </div>
+</div>
+
+<!-- Main Content Area -->
+<div class="container profile-container">
+    <div class="card p-4 p-md-5">
+        <div class="row g-4">
+            <!-- Left Sidebar: Stacks on mobile -->
+            <div class="col-md-4 d-flex flex-column align-items-center text-center">
+                <img src="https://placehold.co/120x120/5d63f2/fff?text=KV"
+                     class="rounded-circle profile-img mb-4 shadow-sm" alt="Kadin Vaccaro" loading="lazy">
+                <h1 class="h4 fw-bold">Kadin Vaccaro</h1>
+                <p class="text-muted mb-1">Owner and Principal at Nasim Management</p>
+                <p class="text-secondary small mb-3">Toronto, Ontario, Canada</p>
+                <button class="btn btn-primary-custom px-4 py-2 text-white">
+                    <i class="fas fa-book me-2"></i>Book Kadin
+                </button>
+
+                <div class="w-100 mt-4 pt-4 border-top">
+                    <p class="fw-bold mb-2">Expert in:</p>
+                    <div class="d-flex flex-wrap justify-content-center gap-2">
+                        <span class="badge expert-tag rounded-pill px-3 py-2">Capital Raising</span>
+                        <span class="badge expert-tag rounded-pill px-3 py-2">Marketing & Sales</span>
+                        <span class="badge expert-tag rounded-pill px-3 py-2">Consulting</span>
+                        <span class="badge expert-tag rounded-pill px-3 py-2">Asset Management</span>
+                        <span class="badge expert-tag rounded-pill px-3 py-2">Business Development</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Content -->
+            <div class="col-md-8">
+                <!-- Tabs -->
+                <ul class="nav nav-tabs border-bottom mb-4 d-flex flex-nowrap overflow-auto" id="profileTabs">
+                    <li class="nav-item flex-shrink-0">
+                        <a class="nav-link tab-link active" id="overview-tab"
+                           data-bs-toggle="tab" href="#overview" role="tab">Overview</a>
+                    </li>
+                    <li class="nav-item flex-shrink-0">
+                        <a class="nav-link tab-link" id="availability-tab"
+                           data-bs-toggle="tab" href="#availability" role="tab">Kadin's Availability</a>
+                    </li>
+                    <li class="nav-item flex-shrink-0">
+                        <a class="nav-link tab-link" id="experiences-tab"
+                           data-bs-toggle="tab" href="#experiences" role="tab">Experiences</a>
+                    </li>
+                    <li class="nav-item flex-shrink-0">
+                        <a class="nav-link tab-link" id="reviews-tab"
+                           data-bs-toggle="tab" href="#reviews" role="tab">Reviews (15)</a>
+                    </li>
+                    <li class="nav-item flex-shrink-0">
+                        <a class="nav-link tab-link" data-tab="more-about" href="javascript:void(0)">More About Kadin</a>
+                    </li>
+                </ul>
+
+                <!-- Tab Panes -->
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="overview" role="tabpanel">
+                        <div class="row g-4">
+                            <div class="col-12 col-lg-7">
+                                <h5 class="fw-bold" style="color:black !important;">How I'd Describe Myself:</h5>
+                                <p class="text-secondary small">Design is an obsessive passion for Suria. Providing a rich, engaging, and delightful experience to the user is his prime focus. In the last nine years of living and breathing designing, the user is his prime focus... <a href="#" class="text-decoration-none fw-bold">Read More</a></p>
+
+                                <h5 class="fw-bold mt-4">Why I Became a Mentor:</h5>
+                                <p class="text-secondary small">I am interested in becoming a mentor in order to grow my knowledge and to make a meaningful impact in people's lives.</p>
+
+                                <h5 class="fw-bold mt-4">An Ideal Relationship To Me:</h5>
+                                <p class="text-secondary small">I am looking to create relationships that are mutually beneficial, inspiring, and long-lasting.</p>
+
+                                <!-- Community Section -->
+                                <div class="content-section mt-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h5 class="fw-bold mb-0">Kadin's Community (28)</h5>
+                                        <a href="#" class="text-decoration-none fw-bold small">Show All</a>
+                                    </div>
+                                    <ul class="list-unstyled mb-0">
+                                        <li class="d-flex align-items-center mb-3">
+                                            <img src="https://placehold.co/40x40/adb5bd/fff?text=RE"
+                                                 class="rounded-circle me-3" alt="Ralph Edwards" loading="lazy">
+                                            <div>
+                                                <h6 class="fw-bold mb-0">Ralph Edwards</h6>
+                                                <p class="text-secondary small mb-0">Toronto, Ontario, Canada</p>
+                                            </div>
+                                        </li>
+                                        <li class="d-flex align-items-center mb-3">
+                                            <img src="https://placehold.co/40x40/adb5bd/fff?text=KM"
+                                                 class="rounded-circle me-3" alt="Kathryn Murphy" loading="lazy">
+                                            <div>
+                                                <h6 class="fw-bold mb-0">Kathryn Murphy</h6>
+                                                <p class="text-secondary small mb-0">Mississauga, Canada</p>
+                                            </div>
+                                        </li>
+                                        <li class="d-flex align-items-center">
+                                            <img src="https://placehold.co/40x40/adb5bd/fff?text=EH"
+                                                 class="rounded-circle me-3" alt="Esther Howard" loading="lazy">
+                                            <div>
+                                                <h6 class="fw-bold mb-0">Esther Howard</h6>
+                                                <p class="text-secondary small mb-0">Sylhet, Bangladesh</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-lg-5">
+                                <!-- Availability -->
+                                <div class="content-section mb-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h5 class="fw-bold mb-0">Availability On February</h5>
+                                        <a href="#" class="text-decoration-none fw-bold small">See More</a>
+                                    </div>
+                                    <div class="row g-2 text-center small">
+                                        <div class="col-4">
+                                            <div class="p-2 border rounded">
+                                                <p class="text-muted mb-0">FRI</p>
+                                                <h6 class="fw-bold mb-0">8 Feb</h6>
+                                                <p class="text-secondary small mb-0">1 Timeslot</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="p-2 border rounded">
+                                                <p class="text-muted mb-0">WED</p>
+                                                <h6 class="fw-bold mb-0">13 Feb</h6>
+                                                <p class="text-secondary small mb-0">3 Timeslots</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="p-2 border rounded">
+                                                <p class="text-muted mb-0">WED</p>
+                                                <h6 class="fw-bold mb-0">13 Feb</h6>
+                                                <p class="text-secondary small mb-0">3 Timeslots</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="p-2 border rounded">
+                                                <p class="text-muted mb-0">FRI</p>
+                                                <h6 class="fw-bold mb-0">17 Feb</h6>
+                                                <p class="text-secondary small mb-0">3 Timeslots</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="p-2 border rounded">
+                                                <p class="text-muted mb-0">WED</p>
+                                                <h6 class="fw-bold mb-0">19 Feb</h6>
+                                                <p class="text-secondary small mb-0">2 Timeslots</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Skills -->
+                                <div class="content-section mb-4">
+                                    <h5 class="fw-bold mb-3">Kadin's Best Skills</h5>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <span class="badge skill-tag rounded-pill px-3 py-2">Communication</span>
+                                        <span class="badge skill-tag rounded-pill px-3 py-2">Interpersonal Skills</span>
+                                        <span class="badge skill-tag rounded-pill px-3 py-2">Sales</span>
+                                        <span class="badge skill-tag rounded-pill px-3 py-2">Team work</span>
+                                        <span class="badge skill-tag rounded-pill px-3 py-2">Project Management</span>
+                                    </div>
+                                </div>
+
+                                <!-- Motivations -->
+                                <div class="content-section">
+                                    <h5 class="fw-bold mb-3">What Motivates Me</h5>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <span class="badge skill-tag rounded-pill px-3 py-2">Completing a task</span>
+                                        <span class="badge skill-tag rounded-pill px-3 py-2">Helping others</span>
+                                        <span class="badge skill-tag rounded-pill px-3 py-2">Impact</span>
+                                        <span class="badge skill-tag rounded-pill px-3 py-2">Learning</span>
+                                        <span class="badge skill-tag rounded-pill px-3 py-2">Money</span>
+                                        <span class="badge skill-tag rounded-pill px-3 py-2">New Ideas</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="availability" role="tabpanel">
+                        <h5 class="fw-bold">Kadin's Availability</h5>
+                        <p class="text-secondary small">This section will show the user's detailed availability and booking options. The content will be dynamic based on the dates available. Currently, this is a placeholder to demonstrate the tab functionality.</p>
+                        <div class="content-section">
+                            <h6 class="fw-bold">Upcoming Timeslots</h6>
+                            <ul class="list-unstyled small">
+                                <li><strong>February 22, 2025:</strong> 10:00 AM - 11:00 AM</li>
+                                <li><strong>February 24, 2025:</strong> 2:00 PM - 3:00 PM</li>
+                                <li><strong>February 26, 2025:</strong> 4:00 PM - 5:00 PM</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="experiences" role="tabpanel">
+                        <h5 class="fw-bold">Experiences</h5>
+                        <p class="text-secondary small">This section will contain detailed information about the user's professional experiences, education, and other relevant background. The content below is for demonstration purposes to show the tab is working.</p>
+                        <div class="content-section">
+                            <h6 class="fw-bold">Work History</h6>
+                            <p class="mb-1"><strong>Principal at Nasim Management</strong></p>
+                            <p class="small text-muted">2020 - Present</p>
+                            <p class="small">Led a team focused on business development and strategic consulting for various clients in the financial sector.</p>
+                            <h6 class="fw-bold mt-4">Education</h6>
+                            <p class="mb-1"><strong>Master of Business Administration (MBA)</strong></p>
+                            <p class="small text-muted">University of Toronto, 2019</p>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="reviews" role="tabpanel">
+                        <h5 class="fw-bold">Reviews (15)</h5>
+                        <p class="text-secondary small">This section will display reviews and testimonials from other users who have interacted with this mentor. The content below is a sample to show the tab functionality is working.</p>
+                        <div class="content-section">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="https://placehold.co/40x40/adb5bd/fff?text=AJ"
+                                     class="rounded-circle me-3" alt="Jane Doe" loading="lazy">
+                                <div>
+                                    <h6 class="fw-bold mb-0">Jane Doe</h6>
+                                    <div class="small text-warning">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="small">"Kadin was incredibly helpful and provided valuable insights on capital raising. Highly recommend!"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@* <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tabs = document.querySelectorAll('#profileTabs .tab-link');
+        const tabPanes = document.querySelectorAll('.tab-content .tab-pane');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove 'active' class from all tabs and panes
+                tabs.forEach(t => t.classList.remove('active'));
+                tabPanes.forEach(p => p.classList.remove('active'));
+
+                // Add 'active' class to the clicked tab and its corresponding pane
+                this.classList.add('active');
+                const targetTab = this.getAttribute('data-tab');
+                document.getElementById(targetTab).classList.add('active');
+            });
+        });
+    });
+</script> *@
