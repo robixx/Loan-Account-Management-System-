@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Customer - Create";
+    ViewData["Title"] = "Profile - View";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -160,18 +160,16 @@
                     <a href="#personal-info" class="list-group-item list-group-item-action active" data-bs-toggle="list">
                         <i class="bi bi-person me-2"></i>Personal Information
                     </a>
-                    <a href="#education" class="list-group-item list-group-item-action" data-bs-toggle="list">
-                        <i class="bi bi-book me-2"></i>Education
+                    <a href="#address" class="list-group-item list-group-item-action" data-bs-toggle="list">
+                        <i class="bi bi-book me-2"></i>Address
                     </a>
-                    <a href="#experience" class="list-group-item list-group-item-action" data-bs-toggle="list">
-                        <i class="bi bi-briefcase me-2"></i>Experience
+                    <a href="#occupation" class="list-group-item list-group-item-action" data-bs-toggle="list">
+                        <i class="bi bi-briefcase me-2"></i>Occupation
                     </a>
                     <a href="#nominee" class="list-group-item list-group-item-action" data-bs-toggle="list">
                         <i class="bi bi-people me-2"></i>Nominee Information
                     </a>
-                    <a href="#documents" class="list-group-item list-group-item-action" data-bs-toggle="list">
-                        <i class="bi bi-file-earmark-text me-2"></i>Documents
-                    </a>
+                    
                 </div>
             </div>
 
@@ -236,6 +234,13 @@
                             </div>
                         </div>
 
+                        
+                    </div>
+
+                    <!-- Education Tab -->
+                    <div class="tab-pane fade" id="address">
+                        <div class="card-header">Address Information</div>
+
                         <div class="form-section">
                             <h5 class="mb-4">Address Information</h5>
                             <div class="row">
@@ -288,62 +293,9 @@
                         </div>
                     </div>
 
-                    <!-- Education Tab -->
-                    <div class="tab-pane fade" id="education">
-                        <div class="card-header">Education Information</div>
-
-                        <div class="form-section">
-                            <h5 class="mb-4">Highest Education</h5>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="educationLevel" class="form-label required-label">Education Level</label>
-                                    <select class="form-select form-select-sm" id="educationLevel">
-                                        <option selected disabled>Select education level</option>
-                                        <option value="highschool">High School</option>
-                                        <option value="associate">Associate Degree</option>
-                                        <option value="bachelor">Bachelor's Degree</option>
-                                        <option value="master">Master's Degree</option>
-                                        <option value="doctorate">Doctorate</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="institution" class="form-label required-label">Institution Name</label>
-                                    <input type="text" class="form-control form-control-sm" id="institution" placeholder="Enter institution name">
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="field" class="form-label required-label">Field of Study</label>
-                                    <input type="text" class="form-control form-control-sm" id="field" placeholder="Enter field of study">
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="graduationYear" class="form-label required-label">Year of Graduation</label>
-                                    <input type="number" class="form-control form-control-sm" id="graduationYear" placeholder="Enter graduation year">
-                                </div>
-                                <div class="col-md-12 mb-3">
-                                    <label for="eduDocument" class="form-label">Upload Education Certificate</label>
-                                    <input type="file" class="form-control form-control-sm" id="eduDocument" accept="image/*,.pdf">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-section">
-                            <h5 class="mb-4">Additional Education</h5>
-                            <div class="row">
-                                <div class="col-md-12 mb-3">
-                                    <label for="otherEducation" class="form-label">Other Qualifications/Certifications</label>
-                                    <textarea class="form-control form-control-sm" id="otherEducation" rows="3" placeholder="List any other qualifications or certifications"></textarea>
-                                </div>
-                                <div class="col-md-12 mb-3">
-                                    <label for="certificateFiles" class="form-label">Upload Additional Certificates</label>
-                                    <input type="file" class="form-control form-control-sm" id="certificateFiles" multiple accept="image/*,.pdf">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- Experience Tab -->
-                    <div class="tab-pane fade" id="experience">
-                        <div class="card-header">Work Experience</div>
+                    <div class="tab-pane fade" id="occupation">
+                        <div class="card-header">Occupation</div>
 
                         <div class="form-section">
                             <h5 class="mb-4">Current Employment</h5>
@@ -453,49 +405,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Documents Tab -->
-                    <div class="tab-pane fade" id="documents">
-                        <div class="card-header">Document Upload</div>
-
-                        <div class="form-section">
-                            <h5 class="mb-4">Required Documents</h5>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="nidDoc" class="form-label required-label">NID Document</label>
-                                    <input type="file" class="form-control form-control-sm" id="nidDoc" required accept="image/*,.pdf">
-                                    <div class="form-text">Upload front and back of your NID</div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="photoId" class="form-label required-label">Passport Size Photo</label>
-                                    <input type="file" class="form-control form-control-sm" id="photoId" required accept="image/*">
-                                    <div class="form-text">Recent passport size photograph</div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="signature" class="form-label required-label">Signature</label>
-                                    <input type="file" class="form-control form-control-sm" id="signature" required accept="image/*">
-                                    <div class="form-text">Upload a clear image of your signature</div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="utilityBill" class="form-label">Utility Bill (Proof of Address)</label>
-                                    <input type="file" class="form-control form-control-sm" id="utilityBill" accept="image/*,.pdf">
-                                    <div class="form-text">Not older than 3 months</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-section">
-                            <h5 class="mb-4">Additional Documents</h5>
-                            <div class="row">
-                                <div class="col-md-12 mb-3">
-                                    <label for="otherDocs" class="form-label">Other Supporting Documents</label>
-                                    <input type="file" class="form-control form-control-sm" id="otherDocs" multiple accept="image/*,.pdf">
-                                    <div class="form-text">Upload any other relevant documents</div>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="form-section">
                             <div class="form-check mb-3">
                                 <input class="form-check-input" type="checkbox" id="termsAgree" required>
@@ -507,7 +416,7 @@
                                 <button class="btn btn-primary btn-lg"><i class="bi bi-check-circle me-2"></i>Submit Profile</button>
                             </div>
                         </div>
-                    </div>
+                    </div>                    
                 </div>
             </div>
         </div>

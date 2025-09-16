@@ -11,5 +11,11 @@ namespace LAMS.WEB.Areas.Accounts.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult AccountCreate()
+        {
+            return View();
+        }
     }
 }
