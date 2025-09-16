@@ -13,7 +13,7 @@
             <div id="sidebar-menu" class="sidebar-menu">
                 <ul>
                     <li class="@(currentUrl =="/dashboard/dashboard/index" ? "active" : "")">
-                        <a href="index.html"><img src="~/assets/img/icons/dashboard.svg" alt="img"><span> Dashboard</span> </a>
+                        <a href="/Dashboard/Dashboard/Index"><img src="~/assets/img/icons/dashboard.svg" alt="img"><span> Dashboard</span> </a>
                     </li>
                     @foreach(var item in menulist)
                     {
@@ -22,7 +22,7 @@
                         var datal=isParentActive ? "active subdrop" : "";
 
                         <li class="submenu">
-                            <a href="javascript:void(0);" class="subdrop @datal"><img src="~/assets/img/icons/product.svg" alt="img"><span>@item.MenuName</span> <span class="menu-arrow"></span></a>
+                            <a href="javascript:void(0);"><img src="~/assets/img/icons/product.svg" alt="img"><span>@item.MenuName</span> <span class="menu-arrow"></span></a>
                             <ul style=" @(ischildActive ? "display: block;" : "display: none;")">
                                 @if (item.Children.Any())
                                 {

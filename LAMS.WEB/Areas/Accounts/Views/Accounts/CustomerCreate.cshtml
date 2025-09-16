@@ -6,53 +6,531 @@
 @section Scripts {
   
 }
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
 <style>
-    .card-header{
-        padding: 0.5rem 1rem !important;        
-        border-bottom: 1px solid #e1e1e1;
+    :root {
+        --primary-color: #ff9f43;
+        --secondary-color: #f8f9fa;
+        --dark-color: #2a2a2a;
     }
+
+    
+    .profile-card {
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        border: none;
+        background: white;
+    }
+
+    .card-header {
+        background: #ff9f43;
+        color: white;
+        font-weight: 600;
+        padding: 1rem 1.5rem;
+    }
+
+    .form-section {
+        padding: 1.5rem;
+        border-bottom: 1px solid #eee;
+    }
+
+        .form-section:last-child {
+            border-bottom: none;
+        }
+
+    .profile-img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid white;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        margin: 0 auto;
+        display: block;
+    }
+
+    .img-upload-container {
+        position: relative;
+        width: 150px;
+        margin: 0 auto;
+    }
+
+    .img-upload-btn {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: var(--primary-color);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-primary {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+
+        .btn-primary:hover {
+            background-color: #524ad1;
+            border-color: #524ad1;
+        }
+
+    .btn-outline-primary {
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+    .nav-pills .nav-link.active {
+        background-color: var(--primary-color);
+    }
+
+    .nav-pills .nav-link {
+        color: var(--dark-color);
+        border-radius: 20px;
+        margin: 5px;
+    }
+
+    .required-label:after {
+        content: " *";
+        color: #dc3545;
+    }
+
+    .list-group-item.active{
+        background: #1b2850 !important;
+        border-color: #1b2850 !important
+    }
+
+    .progress-bar {
+        background-color: #1b2850 !important;
+    }
+
+   /*  media (max-width: 768px) {
+        .profile-img
+
+    {
+        width: 120px;
+        height: 120px;
+    }
+
+    .img-upload-container {
+        width: 120px;
+    }
+
+    .form-section {
+        padding: 1rem;
+    }
+
+    } */
 
 </style>
 
 
-<div class="card">
-    <div class="card-header mb-3">
-        <h5 class="mb-0">Customer Create</h5>
-    </div>    
-    <div class="card-body">
-        <div class="row g-3">
-            <div class="table-responsive text-nowrap">
-               <table class="table table-striped" id="datatable">
-                   <thead>
-                       <tr>
-                           <th>SL.</th>
-                           <th>Name</th>
-                           <th>Email</th>
-                           <th>NID</th>
-                           <th>Number</th>
-                           <th>Active Date</th>
-                           <th>Status</th>
-                       </tr>
-                   </thead>
-                   <tbody>
-                       <tr>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                       </tr>
-                   </tbody>
+<!-- Main Content -->
+<main class="container-fluid">
+    <div class="row">
+        <!-- Left Navigation -->
+        <div class="col-lg-3">
+            <div class="profile-card">
+                <div class="text-center p-4">
+                    <div class="img-upload-container">
+                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80" alt="Profile Picture" class="profile-img" id="profile-preview">
+                        <div class="img-upload-btn" onclick="document.getElementById('profile-upload').click()">
+                            <i class="bi bi-camera"></i>
+                            <input type="file" id="profile-upload" class="d-none" accept="image/*">
+                        </div>
+                    </div>
+                    <h4 class="mt-3 mb-0">Customer Name</h4>
+                    <p class="text-muted">ID: CUST-12345</p>
+                </div>
 
-               </table>
-           </div>
+                <div class="list-group list-group-flush">
+                    <a href="#personal-info" class="list-group-item list-group-item-action active" data-bs-toggle="list">
+                        <i class="bi bi-person me-2"></i>Personal Information
+                    </a>
+                    <a href="#education" class="list-group-item list-group-item-action" data-bs-toggle="list">
+                        <i class="bi bi-book me-2"></i>Education
+                    </a>
+                    <a href="#experience" class="list-group-item list-group-item-action" data-bs-toggle="list">
+                        <i class="bi bi-briefcase me-2"></i>Experience
+                    </a>
+                    <a href="#nominee" class="list-group-item list-group-item-action" data-bs-toggle="list">
+                        <i class="bi bi-people me-2"></i>Nominee Information
+                    </a>
+                    <a href="#documents" class="list-group-item list-group-item-action" data-bs-toggle="list">
+                        <i class="bi bi-file-earmark-text me-2"></i>Documents
+                    </a>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="card-header">Profile Completion</div>
+                <div class="p-3 text-center">
+                    <div class="progress mb-3" style="height: 20px;">
+                        <div class="progress-bar" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%</div>
+                    </div>
+                    <p class="text-muted">Complete all sections to finish your profile</p>
+                   
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Content -->
+        <div class="col-lg-9">
+            <div class="profile-card">
+                <div class="tab-content">
+                    <!-- Personal Information Tab -->
+                    <div class="tab-pane fade show active" id="personal-info">
+                        <div class="card-header">Personal Information</div>
+
+                        <div class="form-section">
+                            <h5 class="mb-4">Basic Information</h5>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="fullName" class="form-label required-label">Full Name</label>
+                                    <input type="text" class="form-control form-control-sm" id="fullName" placeholder="Enter your full name">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="phone" class="form-label required-label">Phone Number</label>
+                                    <input type="tel" class="form-control form-control-sm" id="phone" placeholder="Enter your phone number">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label required-label">Email Address</label>
+                                    <input type="email" class="form-control form-control-sm" id="email" placeholder="Enter your email">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="dob" class="form-label required-label">Date of Birth</label>
+                                    <input type="date" class="form-control form-control-sm" id="dob">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="gender" class="form-label required-label">Gender</label>
+                                    <select class="form-select form-select-sm" id="gender">
+                                        <option selected disabled>Select gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="maritalStatus" class="form-label">Marital Status</label>
+                                    <select class="form-select form-select-sm" id="maritalStatus">
+                                        <option selected disabled>Select status</option>
+                                        <option value="single">Single</option>
+                                        <option value="married">Married</option>
+                                        <option value="divorced">Divorced</option>
+                                        <option value="widowed">Widowed</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h5 class="mb-4">Address Information</h5>
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="address" class="form-label required-label">Street Address</label>
+                                    <input type="text" class="form-control form-control-sm" id="address" placeholder="Enter your street address">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="city" class="form-label required-label">City</label>
+                                    <input type="text" class="form-control form-control-sm" id="city" placeholder="Enter your city">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="state" class="form-label required-label">State/Province</label>
+                                    <input type="text" class="form-control form-control-sm" id="state" placeholder="Enter your state">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="zipCode" class="form-label required-label">ZIP Code</label>
+                                    <input type="text" class="form-control form-control-sm" id="zipCode" placeholder="Enter ZIP code">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="country" class="form-label required-label">Country</label>
+                                    <select class="form-select form-select-sm" id="country">
+                                        <option selected disabled>Select country</option>
+                                        <option value="usa">United States</option>
+                                        <option value="uk">United Kingdom</option>
+                                        <option value="canada">Canada</option>
+                                        <option value="australia">Australia</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h5 class="mb-4">Identification</h5>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="nid" class="form-label required-label">NID Number</label>
+                                    <input type="text" class="form-control form-control-sm" id="nid" placeholder="Enter your NID number">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="passport" class="form-label">Passport Number (if applicable)</label>
+                                    <input type="text" class="form-control form-control-sm" id="passport" placeholder="Enter passport number">
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="nidFile" class="form-label">Upload NID Document</label>
+                                    <input type="file" class="form-control form-control-sm" id="nidFile" accept="image/*,.pdf">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Education Tab -->
+                    <div class="tab-pane fade" id="education">
+                        <div class="card-header">Education Information</div>
+
+                        <div class="form-section">
+                            <h5 class="mb-4">Highest Education</h5>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="educationLevel" class="form-label required-label">Education Level</label>
+                                    <select class="form-select form-select-sm" id="educationLevel">
+                                        <option selected disabled>Select education level</option>
+                                        <option value="highschool">High School</option>
+                                        <option value="associate">Associate Degree</option>
+                                        <option value="bachelor">Bachelor's Degree</option>
+                                        <option value="master">Master's Degree</option>
+                                        <option value="doctorate">Doctorate</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="institution" class="form-label required-label">Institution Name</label>
+                                    <input type="text" class="form-control form-control-sm" id="institution" placeholder="Enter institution name">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="field" class="form-label required-label">Field of Study</label>
+                                    <input type="text" class="form-control form-control-sm" id="field" placeholder="Enter field of study">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="graduationYear" class="form-label required-label">Year of Graduation</label>
+                                    <input type="number" class="form-control form-control-sm" id="graduationYear" placeholder="Enter graduation year">
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="eduDocument" class="form-label">Upload Education Certificate</label>
+                                    <input type="file" class="form-control form-control-sm" id="eduDocument" accept="image/*,.pdf">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h5 class="mb-4">Additional Education</h5>
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="otherEducation" class="form-label">Other Qualifications/Certifications</label>
+                                    <textarea class="form-control form-control-sm" id="otherEducation" rows="3" placeholder="List any other qualifications or certifications"></textarea>
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="certificateFiles" class="form-label">Upload Additional Certificates</label>
+                                    <input type="file" class="form-control form-control-sm" id="certificateFiles" multiple accept="image/*,.pdf">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience Tab -->
+                    <div class="tab-pane fade" id="experience">
+                        <div class="card-header">Work Experience</div>
+
+                        <div class="form-section">
+                            <h5 class="mb-4">Current Employment</h5>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="employmentStatus" class="form-label required-label">Employment Status</label>
+                                    <select class="form-select form-select-sm" id="employmentStatus">
+                                        <option selected disabled>Select employment status</option>
+                                        <option value="employed">Employed</option>
+                                        <option value="self-employed">Self-Employed</option>
+                                        <option value="unemployed">Unemployed</option>
+                                        <option value="student">Student</option>
+                                        <option value="retired">Retired</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="company" class="form-label">Company Name</label>
+                                    <input type="text" class="form-control form-control-sm" id="company" placeholder="Enter company name">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="position" class="form-label">Position</label>
+                                    <input type="text" class="form-control form-control-sm" id="position" placeholder="Enter your position">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="workDuration" class="form-label">Duration</label>
+                                    <input type="text" class="form-control form-control-sm" id="workDuration" placeholder="e.g., 2018 - Present">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h5 class="mb-4">Previous Employment</h5>
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="previousJobs" class="form-label">Previous Work Experience</label>
+                                    <textarea class="form-control form-control-sm" id="previousJobs" rows="3" placeholder="List your previous work experiences"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h5 class="mb-4">Skills & Expertise</h5>
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="skills" class="form-label">Skills</label>
+                                    <textarea class="form-control form-control-sm" id="skills" rows="3" placeholder="List your skills and areas of expertise"></textarea>
+                                    <div class="form-text">Separate skills with commas</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nominee Tab -->
+                    <div class="tab-pane fade" id="nominee">
+                        <div class="card-header">Nominee Information</div>
+
+                        <div class="form-section">
+                            <h5 class="mb-4">Primary Nominee</h5>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="nomineeName" class="form-label required-label">Nominee Name</label>
+                                    <input type="text" class="form-control form-control-sm" id="nomineeName" placeholder="Enter nominee's full name">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="relationship" class="form-label required-label">Relationship</label>
+                                    <select class="form-select form-select-sm" id="relationship">
+                                        <option selected disabled>Select relationship</option>
+                                        <option value="spouse">Spouse</option>
+                                        <option value="parent">Parent</option>
+                                        <option value="child">Child</option>
+                                        <option value="sibling">Sibling</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="nomineePhone" class="form-label required-label">Phone Number</label>
+                                    <input type="tel" class="form-control form-control-sm" id="nomineePhone" placeholder="Enter nominee's phone number">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="nomineeEmail" class="form-label">Email Address</label>
+                                    <input type="email" class="form-control form-control-sm" id="nomineeEmail" placeholder="Enter nominee's email">
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="nomineeAddress" class="form-label required-label">Address</label>
+                                    <textarea class="form-control form-control-sm" id="nomineeAddress" rows="2" placeholder="Enter nominee's address"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h5 class="mb-4">Additional Nominee (Optional)</h5>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="secondaryNominee" class="form-label">Secondary Nominee Name</label>
+                                    <input type="text" class="form-control form-control-sm" id="secondaryNominee" placeholder="Enter secondary nominee's name">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="secondaryRelationship" class="form-label">Relationship</label>
+                                    <select class="form-select form-select-sm" id="secondaryRelationship">
+                                        <option selected disabled>Select relationship</option>
+                                        <option value="spouse">Spouse</option>
+                                        <option value="parent">Parent</option>
+                                        <option value="child">Child</option>
+                                        <option value="sibling">Sibling</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Documents Tab -->
+                    <div class="tab-pane fade" id="documents">
+                        <div class="card-header">Document Upload</div>
+
+                        <div class="form-section">
+                            <h5 class="mb-4">Required Documents</h5>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="nidDoc" class="form-label required-label">NID Document</label>
+                                    <input type="file" class="form-control form-control-sm" id="nidDoc" required accept="image/*,.pdf">
+                                    <div class="form-text">Upload front and back of your NID</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="photoId" class="form-label required-label">Passport Size Photo</label>
+                                    <input type="file" class="form-control form-control-sm" id="photoId" required accept="image/*">
+                                    <div class="form-text">Recent passport size photograph</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="signature" class="form-label required-label">Signature</label>
+                                    <input type="file" class="form-control form-control-sm" id="signature" required accept="image/*">
+                                    <div class="form-text">Upload a clear image of your signature</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="utilityBill" class="form-label">Utility Bill (Proof of Address)</label>
+                                    <input type="file" class="form-control form-control-sm" id="utilityBill" accept="image/*,.pdf">
+                                    <div class="form-text">Not older than 3 months</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h5 class="mb-4">Additional Documents</h5>
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="otherDocs" class="form-label">Other Supporting Documents</label>
+                                    <input type="file" class="form-control form-control-sm" id="otherDocs" multiple accept="image/*,.pdf">
+                                    <div class="form-text">Upload any other relevant documents</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="termsAgree" required>
+                                <label class="form-check-label" for="termsAgree">
+                                    I hereby declare that all the information provided is true and correct to the best of my knowledge
+                                </label>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-primary btn-lg"><i class="bi bi-check-circle me-2"></i>Submit Profile</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</main>
 
 
-<script src="~/assets/js/script.js"></script>
+@* <script src="~/assets/js/script.js"></script> *@
 
+<script>
+    // Simple image preview functionality
+    document.getElementById('profile-upload').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                document.getElementById('profile-preview').src = event.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // Activate the first tab
+    const firstTab = new bootstrap.Tab(document.querySelector('.list-group-item.active'));
+    firstTab.show();
+</script>
