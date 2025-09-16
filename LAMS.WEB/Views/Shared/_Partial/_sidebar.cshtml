@@ -28,7 +28,10 @@
                                 {
                                     foreach (var child in item.Children)
                                     {
-                                        <li><a href="@child.Urls" class="@(isParentActive ? "active" : "")">@child.MenuName</a></li>
+                                        var isCurrentChildActive = currentUrl.Equals(child.Urls.ToLower(), StringComparison.OrdinalIgnoreCase);
+                                        <li>
+                                            <a href="@child.Urls" class="@(isCurrentChildActive ? "active" : "")">@child.MenuName</a>
+                                        </li>
                                     }
                                 }                                                            
                                 
