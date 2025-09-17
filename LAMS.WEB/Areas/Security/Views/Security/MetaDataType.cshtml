@@ -1,0 +1,170 @@
+﻿@model List<LAMS.Application.ModelViewDto.MetaDataDto>
+
+@{
+    ViewData["Title"] = "MetaData Type";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts {
+
+}
+<style>
+    .card .card-header {
+        border-bottom: 1px solid #ddd; /* thin gray line */
+        padding: 10px 15px; /* spacing inside */
+        font-weight: 600; /* bold header text */
+        font-size: 16px; /* readable text size */
+        color: #333; /* dark text */
+    }
+
+        .card .card-header .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #212b36;
+            margin: 0 0 10px;
+        }
+
+
+    .modal.right .modal-dialog {
+        position: fixed;
+        margin: 0;
+        left: auto; /* Ensure it's not tied to the left edge */
+        right: 0; /* Position the modal at the right edge */
+        height: 100%;
+        width: 75%; /* Responsive width for smaller screens */
+        max-width: 400px;
+        /* Initially position the modal off-screen to the right */
+        transform: translate3d(100%, 0, 0);
+    }
+
+    .modal.right .modal-content {
+        height: 100%;
+        overflow-y: auto;
+        border-radius: 0;
+    }
+
+    /* Animate the modal into view when it becomes active */
+    .modal.right.show .modal-dialog {
+        transform: translate3d(0, 0, 0);
+    }
+
+    /* Ensure the default Bootstrap modal transition still works */
+    .modal-dialog {
+        transition: transform .3s ease-out;
+    }
+
+    .modal .btn-close {
+        background: 1px 0;
+    }
+
+</style>
+
+
+<div class="container-fluid">
+
+    <div class="page-header">
+        <div class="row">
+            <div class="col">
+                <h3 class="page-title">Meta Data Entry</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/Dashboard/Dashboard/Index">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Meta Data</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header pb-1 d-flex justify-content-between align-items-center">
+                    <h4 class="card-title mb-0">MetaData Datatable</h4>
+                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#rightSideModal">Add New</button>
+                    @*  <p class="card-text">
+                        This is the most basic example of the datatables with zero configuration. Use the
+                        <code>.datatable</code> class to initialize datatables.
+                    </p> *@
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table  datanew ">
+                            <thead>
+                                <tr>
+                                    <th>Serial</th>
+                                    <th>Element Name</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null && Model.Any())
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        int i = 1;
+                                        <tr>
+                                            <td>@i</td>
+                                            <td>@item.DataElementName</td>
+                                            <td>@item.InsertDate.ToString("dd/MM/yyyy")</td>
+                                            <td>
+                                                @{
+                                                    var statusd = item.Status == 1 ? "Active" : "Inactive";
+                                                    var badgeClass = item.Status == 1 ? "bg-success" : "bg-danger";
+                                                }
+                                                <span class="badge @badgeClass">@statusd</span>
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.DataElementId" class="btn btn-sm btn-primary me-1">
+                                                    <i class="bi bi-pencil"></i> Edit
+                                                </a>
+                                                <a asp-action="Delete" asp-route-id="@item.DataElementId" class="btn btn-sm btn-danger"
+                                                   onclick="return confirm('Are you sure you want to delete this record?');">
+                                                    <i class="bi bi-trash"></i> Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        i++;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- The Right-Side Modal -->
+<div class="modal right fade" id="rightSideModal" tabindex="-1" aria-labelledby="rightSideModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="rightSideModalLabel">Meta Data Entry</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="background:#f3f3ef;">
+                <div class="card">
+                   
+                    <div class="card-body">
+                        <div class="form-group mb-2">
+                            <label for="typeName">Property Name</label>
+                            <input class="form-control form-control-sm" name="PropertyName" id="PropertyName" required />
+                        </div>
+
+                        <div class="form-group form-check mb-2">
+                            <input type="checkbox" class="form-check-input" name="IsActive" id="IsActive" />
+                            <label class="form-check-label" for="IsActive">Is Active</label>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-sm">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

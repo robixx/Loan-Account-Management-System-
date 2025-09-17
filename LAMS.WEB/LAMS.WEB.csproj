@@ -9,12 +9,20 @@
   <ItemGroup>
     <Compile Remove="Areas\Accounts\Data\**" />
     <Compile Remove="Areas\Accounts\Models\**" />
+    <Compile Remove="bin\**" />
+    <Compile Remove="obj\**" />
     <Content Remove="Areas\Accounts\Data\**" />
     <Content Remove="Areas\Accounts\Models\**" />
+    <Content Remove="bin\**" />
+    <Content Remove="obj\**" />
     <EmbeddedResource Remove="Areas\Accounts\Data\**" />
     <EmbeddedResource Remove="Areas\Accounts\Models\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <EmbeddedResource Remove="obj\**" />
     <None Remove="Areas\Accounts\Data\**" />
     <None Remove="Areas\Accounts\Models\**" />
+    <None Remove="bin\**" />
+    <None Remove="obj\**" />
   </ItemGroup>
 
   <ItemGroup>

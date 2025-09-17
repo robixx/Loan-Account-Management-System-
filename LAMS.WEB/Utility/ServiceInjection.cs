@@ -1,6 +1,7 @@
 ﻿using LAMS.Application.Interface;
 using LAMS.Infrastructure.ServiceImplementation;
 using Microsoft.CodeAnalysis;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace LAMS.WEB.Utility
 {
@@ -10,6 +11,7 @@ namespace LAMS.WEB.Utility
         {
 
             services.AddScoped<IMenu, MenuServices>();
+            services.AddScoped<IMetaData, MetaDataService>();
         }
     }
 }
