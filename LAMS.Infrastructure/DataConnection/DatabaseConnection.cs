@@ -32,6 +32,7 @@ namespace LAMS.Infrastructure.DataConnection
         public DbSet<CustomerAddress> CustomerAddress { get; set; }
         public DbSet<CustomerNomineeInfo> CustomerNomineeInfo { get; set; }
         public DbSet<CustomerDetailsInfo> CustomerDetailsInfo { get; set; }
+        public DbSet<EmployeeData> EmployeeData { get; set; }
         
 
         //Model View Entity
@@ -55,6 +56,7 @@ namespace LAMS.Infrastructure.DataConnection
             modelBuilder.Entity<CustomerNomineeInfo>().HasKey(x => x.CustNomineeId);
             modelBuilder.Entity<CustomerAddress>().HasKey(x => x.CustAddressId);
             modelBuilder.Entity<CustomerInformation>().HasKey(x => x.CustomerId);
+            modelBuilder.Entity<EmployeeData>().HasKey(x => x.EmployeeID);
 
 
 

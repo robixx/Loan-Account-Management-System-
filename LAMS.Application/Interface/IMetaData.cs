@@ -1,4 +1,5 @@
-﻿using LAMS.Domain.Entities;
+﻿using LAMS.Application.ModelViewDto;
+using LAMS.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace LAMS.Application.Interface
     public interface IMetaData
     {
         Task<List<MetaData>> getMetaDataAsync();
+        Task<(List<EmployeeDataDto> Data, int Total)> getAsync(int pageNumber, int pageSize, string searchTerm);
     }
 }
