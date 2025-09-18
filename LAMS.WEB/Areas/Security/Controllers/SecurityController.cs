@@ -23,6 +23,12 @@ namespace LAMS.WEB.Areas.Security.Controllers
         }
 
         [HttpGet]
+        public IActionResult CreateRole()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public async Task<IActionResult> MetaDataType(int pageNumber=1, int pageSize=10, string searchTerm = "")
         {
             
