@@ -11,9 +11,11 @@ namespace LAMS.WEB.Areas.Security.Controllers
     {
 
         private readonly IMetaData _metadata;
-        public SecurityController(IMetaData metaData)
+        private readonly IRole _role;
+        public SecurityController(IMetaData metaData, IRole role)
         {
             _metadata = metaData;
+            _role = role;
         }
 
         [HttpGet]
@@ -23,10 +25,31 @@ namespace LAMS.WEB.Areas.Security.Controllers
         }
 
         [HttpGet]
-        public IActionResult CreateRole()
+        public async Task<IActionResult> CreateRole()
         {
-            return View();
+            var result= await _role.getRoleAsync();
+            return View(result);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateRole(RoleDto model)
+        {
+            var result = await _role.SaveRoleAsync(model);
+            TempData["errorMessage"]= result.Message;
+            return RedirectToAction("CreateRole");
+        }
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteRole(int roleId)
+        {
+            var result = await _role.DeleteRoleAsync(roleId);
+            TempData["errorMessage"] = result.Message;
+            return RedirectToAction("CreateRole");
+        }
+
+
 
         [HttpGet]
         public async Task<IActionResult> MetaDataType(int pageNumber=1, int pageSize=10, string searchTerm = "")

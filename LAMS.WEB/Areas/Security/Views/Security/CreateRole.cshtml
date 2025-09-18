@@ -1,13 +1,67 @@
-﻿@{
-    ViewData["Title"] = "MetaData Type";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿
+@model List<LAMS.Application.ModelViewDto.RoleDto>
 
-    
+
+@{
+    ViewData["Title"] = "Role Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int i = 1;
+
 }
 @section Scripts {
 
 }
 
+<style>
+    .card .card-header {
+        border-bottom: 1px solid #ddd; /* thin gray line */
+        padding: 10px 15px; /* spacing inside */
+        font-weight: 600; /* bold header text */
+        font-size: 16px; /* readable text size */
+        color: #333; /* dark text */
+    }
+
+        .card .card-header .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #212b36;
+            margin: 0 0 10px;
+        }
+
+
+    .modal.right .modal-dialog {
+        position: fixed;
+        margin: 0;
+        left: auto; /* Ensure it's not tied to the left edge */
+        right: 0; /* Position the modal at the right edge */
+        height: 100%;
+        width: 75%; /* Responsive width for smaller screens */
+        max-width: 400px;
+        /* Initially position the modal off-screen to the right */
+        transform: translate3d(100%, 0, 0);
+    }
+
+    .modal.right .modal-content {
+        height: 100%;
+        overflow-y: auto;
+        border-radius: 0;
+    }
+
+    /* Animate the modal into view when it becomes active */
+    .modal.right.show .modal-dialog {
+        transform: translate3d(0, 0, 0);
+    }
+
+    /* Ensure the default Bootstrap modal transition still works */
+    .modal-dialog {
+        transition: transform .3s ease-out;
+    }
+
+    .btn-close {
+        --bs-close-color: black !important;
+    }
+
+</style>
 <div class="container-fluid">
 
     <div class="page-header">
@@ -26,17 +80,196 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header pb-1 d-flex justify-content-between align-items-center">
-                    <h4 class="card-title mb-0">MetaData Datatable</h4>
+                    <h4 class="card-title mb-0">Role Datatable</h4>
                     <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#rightSideModal">Add New</button>
-                    @*  <p class="card-text">
-                        This is the most basic example of the datatables with zero configuration. Use the
-                        <code>.datatable</code> class to initialize datatables.
-                    </p> *@
+                   
                 </div>
                 <div class="card-body">
-                   
+                    @if (TempData["errorMessage"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert" style="border-left: 2px solid #1b2850; border-radius: 8px;">
+                            @TempData["errorMessage"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+
+                   <div class="table-responsive">
+                        <table class="table datanew">
+                            <thead>
+                                <tr>
+                                    <th>Serial</th>
+                                    <th>RoleName</th>
+                                    <th>CreateDate</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(var item in Model)
+                                {
+                                    <tr>
+                                        <td>@i</td>
+                                        <td>@item.RoleName</td>
+                                        <td>@item.CreateDate.ToString("dd-MMM-yyyyy")</td>
+                                        <td>@item.Description</td>
+                                        <td>
+                                            @{
+                                                var status = item.IsActive == true ? "Active" : "InActive";
+                                            }
+                                           <span class="badge bg-info">@status</span>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="editBtn me-2"
+                                               data-id="@item.RoleId"
+                                               data-name="@item.RoleName"
+                                               data-desc="@item.Description"
+                                               data-active="@item.IsActive"
+                                               data-bs-toggle="modal"
+                                               data-bs-target="#rightSideModal">
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </a>
+                                            <a href="/Security/Security/DeleteRole?roleId=@item.RoleId"
+                                               class="text-danger d-inline-flex align-items-center p-2"
+                                               onclick="return confirm('Are you sure you want to delete this role?');">
+                                                <i class="fas fa-trash-alt  fa-lg"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    i++;
+                                }
+                            </tbody>
+                        </table>
+                   </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+<!-- The Right-Side Modal -->
+<div class="modal right fade" id="rightSideModal" tabindex="-1" aria-labelledby="rightSideModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="font-size:18px;" id="rightSideModalLabel">Role Entry</h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                        style="--bs-close-color: black;"></button>
+            </div>
+            <div class="modal-body" style="background:#f3f3ef;">
+                <div class="card">
+                    <div class="toast-container position-fixed top-0 end-0 p-3" id="toastContainer"></div>
+                    <div class="card-body">
+
+                        <form id="roleForm" method="post" action="/Security/Security/CreateRole">
+                            <input type="hidden" id="RoleId" name="RoleId" />
+                            <div class="mb-3">
+                                <label for="roleName" class="form-label">Role Name</label>
+                                <input type="text"
+                                       class="form-control form-control-sm"
+                                       name="RoleName"
+                                       id="RoleName" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="roleName" class="form-label">Description</label>
+                                <textarea type="text"
+                                          class="form-control form-control-sm"
+                                          name="Description"
+                                          id="Description"></textarea>
+                            </div>
+
+                            <div class="mb-3 form-check">
+                                <input type="checkbox"
+                                       class="form-check-input"
+                                       name="IsActive" value="true"
+                                       id="IsActive" />
+                                <label class="form-check-label" for="IsActive">Is Active</label>
+                            </div>
+
+                            <div class="mb-3 text-end">
+                                <button type="submit" class="btn btn-primary btn-sm">Save changes</button>
+                            </div>
+                        </form>
+                       
+                    </div>
+
+                </div>
+                <div class="modal-footer d-none">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-sm"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/assets/js/jquery-3.6.0.min.js"></script>
+
+<script>
+    // Reusable function to create a toast
+    function showToast(message, type = "danger") {
+        // Create toast wrapper
+        let toastEl = document.createElement("div");
+        toastEl.className = `toast align-items-center text-bg-${type} border-0`;
+        toastEl.setAttribute("role", "alert");
+        toastEl.setAttribute("aria-live", "assertive");
+        toastEl.setAttribute("aria-atomic", "true");
+
+        // Toast inner HTML
+        toastEl.innerHTML = `
+            <div class="d-flex" style="background:#890303; color:white;">
+                <div class="toast-body">${message}</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                        data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        `;
+
+        // Append to container
+        document.getElementById("toastContainer").appendChild(toastEl);
+
+        // Initialize and show toast
+        let toast = new bootstrap.Toast(toastEl, { delay: 2000 });
+        toast.show();
+
+        // Remove from DOM after hidden
+        toastEl.addEventListener('hidden.bs.toast', () => {
+            toastEl.remove();
+        });
+    }
+
+    // Form validation
+    document.getElementById("roleForm").addEventListener("submit", function (e) {
+        let roleName = document.getElementById("roleName").value.trim();
+
+        if (roleName === "") {
+            e.preventDefault(); // stop form submission
+            showToast("Role Name is required!", "danger"); // red error toast
+        } 
+    });
+
+
+    document.querySelectorAll('.editBtn').forEach(button => {
+        button.addEventListener('click', function() {
+            const id = this.getAttribute('data-id');
+            const name = this.getAttribute('data-name');
+            const desc = this.getAttribute('data-desc');
+            const isActive = this.getAttribute('data-active') === 'True' || this.getAttribute('data-active') === 'true';
+
+            // Fill modal fields
+            document.getElementById('RoleId').value = id;
+            document.getElementById('RoleName').value = name;
+            document.getElementById('Description').value = desc;
+            document.getElementById('IsActive').checked = isActive;
+
+            // Change form action to Edit endpoint
+            document.getElementById('roleForm').action = '/Security/Security/CreateRole';
+        });
+    });
+
+</script>

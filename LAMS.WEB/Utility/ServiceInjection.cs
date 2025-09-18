@@ -12,6 +12,7 @@ namespace LAMS.WEB.Utility
 
             services.AddScoped<IMenu, MenuServices>();
             services.AddScoped<IMetaData, MetaDataService>();
+            services.AddScoped<IRole, RoleService>();
         }
     }
 }

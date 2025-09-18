@@ -33,11 +33,13 @@ namespace LAMS.Infrastructure.DataConnection
         public DbSet<CustomerNomineeInfo> CustomerNomineeInfo { get; set; }
         public DbSet<CustomerDetailsInfo> CustomerDetailsInfo { get; set; }
         public DbSet<EmployeeData> EmployeeData { get; set; }
+        public DbSet<UserRole> UserRole { get; set; }
         
 
         //Model View Entity
         public DbSet<MenuDto> MenuDto {  get; set; }
         public DbSet<MetaDataDto> MetaDataDto {  get; set; }
+        public DbSet<RoleDto> RoleDto {  get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -57,6 +59,7 @@ namespace LAMS.Infrastructure.DataConnection
             modelBuilder.Entity<CustomerAddress>().HasKey(x => x.CustAddressId);
             modelBuilder.Entity<CustomerInformation>().HasKey(x => x.CustomerId);
             modelBuilder.Entity<EmployeeData>().HasKey(x => x.EmployeeID);
+            modelBuilder.Entity<UserRole>().HasKey(x => x.RoleId);
 
 
 
@@ -64,6 +67,7 @@ namespace LAMS.Infrastructure.DataConnection
             //Model View Entity
             modelBuilder.Entity<MenuDto>().HasNoKey();
             modelBuilder.Entity<MetaDataDto>().HasNoKey();
+            modelBuilder.Entity<RoleDto>().HasNoKey();
 
             base.OnModelCreating(modelBuilder);
         }
