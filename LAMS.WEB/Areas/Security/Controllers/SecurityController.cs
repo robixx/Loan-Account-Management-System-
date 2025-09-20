@@ -87,5 +87,12 @@ namespace LAMS.WEB.Areas.Security.Controllers
                 TotalPages = pageSize
             });
         }
+
+
+        [HttpGet]
+        public IActionResult RolePermission()
+        {
+            return View();
+        }
     }
 }

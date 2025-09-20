@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Role Permission";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int i = 1;
+
+}
+@section Scripts {
+
+}
+
+
+<div class="container-fluid">
+
+    <div class="page-header">
+        <div class="row">
+            <div class="col">
+                <h3 class="page-title">Role Create</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/Dashboard/Dashboard/Index">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Role List</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header pb-1 d-flex justify-content-between align-items-center">
+                    <h4 class="card-title mb-0">Role Datatable</h4>
+                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#rightSideModal">Add New</button>
+
+                </div>
+                <div class="card-body">
+                    @if (TempData["errorMessage"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert" style="border-left: 2px solid #1b2850; border-radius: 8px;">
+                            @TempData["errorMessage"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+
+                    <div class="table-responsive">
+                        <table class="table datanew">
+                            <thead>
+                                <tr>
+                                    <th>Serial</th>
+                                    <th>RoleName</th>
+                                    <th>CreateDate</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                             
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
